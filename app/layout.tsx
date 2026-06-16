@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono, Press_Start_2P } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { LanguageProvider } from "@/components/providers/language-provider";
-import { Nav } from "@/components/nav";
-import { Footer } from "@/components/footer";
 import { en } from "@/content/en";
 
 const mono = JetBrains_Mono({
   variable: "--font-jetbrains",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const pixel = Press_Start_2P({
+  variable: "--font-pixel",
+  subsets: ["latin"],
+  weight: "400",
   display: "swap",
 });
 
@@ -46,14 +51,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${mono.variable} h-full`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${mono.variable} ${pixel.variable} h-full`}
+      suppressHydrationWarning
+    >
       <body className="font-mono min-h-full flex flex-col bg-bg text-fg antialiased">
         <ThemeProvider>
-          <LanguageProvider>
-            <Nav />
-            <div className="flex-1">{children}</div>
-            <Footer />
-          </LanguageProvider>
+          <LanguageProvider>{children}</LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

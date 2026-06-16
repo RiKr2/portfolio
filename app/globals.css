@@ -113,3 +113,85 @@ body {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* ---- Minecraft scope (day by default; night under .dark) ------------- */
+.mc {
+  /* day */
+  --sky-top: #5fa8ff;
+  --sky-bottom: #bfe6ff;
+  --sun-moon: #fff4c2;
+  --grass: #5ca832;
+  --grass-top: #7cc23f;
+  --grass-dark: #3f7d22;
+  --dirt: #7a5733;
+  --dirt-dark: #5c4026;
+  --stone: #8b8b8b;
+  --gui: #c6c6c6;
+  --gui-dark: #565656;
+  --gui-darker: #373737;
+  --gui-slot: #8b8b8b;
+  --mc-ink: #3a2f1b;
+  --mc-paper: #d8c89b;
+  --mc-yellow: #ffec5c;
+  --mc-green: #66bb33;
+  --mc-red: #d64a3a;
+  color: var(--mc-ink);
+}
+.dark .mc {
+  /* night */
+  --sky-top: #060a1f;
+  --sky-bottom: #16244a;
+  --sun-moon: #e9eefc;
+  --grass: #2f5e1c;
+  --grass-top: #3f7d22;
+  --grass-dark: #234414;
+  --dirt: #5c4026;
+  --dirt-dark: #3f2d1a;
+  --mc-ink: #e7e2d2;
+}
+
+.mc h1,
+.mc h2,
+.mc h3,
+.mc .font-pixel {
+  font-family: var(--font-pixel), var(--font-jetbrains), monospace;
+  line-height: 1.5;
+}
+.mc .pixelated {
+  image-rendering: pixelated;
+}
+
+/* Classic beveled GUI panel */
+.mc-bevel {
+  border-style: solid;
+  border-width: 3px;
+  border-top-color: #fdfdfd;
+  border-left-color: #fdfdfd;
+  border-right-color: var(--gui-dark);
+  border-bottom-color: var(--gui-dark);
+  background: var(--gui);
+}
+/* Inset slot (inverted bevel) */
+.mc-inset {
+  border-style: solid;
+  border-width: 3px;
+  border-top-color: var(--gui-dark);
+  border-left-color: var(--gui-dark);
+  border-right-color: #fdfdfd;
+  border-bottom-color: #fdfdfd;
+  background: var(--gui-slot);
+}
+
+@keyframes mc-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+@keyframes mc-twinkle {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+.mc-bob { animation: mc-bob 2.4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-bob { animation: none !important; }
+}
