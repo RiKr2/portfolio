@@ -11,7 +11,7 @@ export const CONTACT = {
   email: "rikr2fun2ra@gmail.com",
   github: "https://github.com/RiKr2",
   linkedin: "https://www.linkedin.com/in/rikr2/",
-  repo: "https://github.com/RiKr2",
+  repo: "https://github.com/RiKr2/portfolio",
 };
 
 export type { Content, Locale };
