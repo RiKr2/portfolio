@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useLanguage } from "@/components/providers/language-provider";
-import { McSection } from "./mc-section";
 
 export function Skills() {
   const { t } = useLanguage();
@@ -10,7 +9,7 @@ export function Skills() {
   const [tab, setTab] = useState(0);
 
   return (
-    <McSection id="skills" heading={s.heading}>
+    <div>
       <div className="mb-3 flex flex-wrap gap-1" role="tablist" aria-label={s.heading}>
         {s.groups.map((g, i) => (
           <button
@@ -29,7 +28,6 @@ export function Skills() {
           </button>
         ))}
       </div>
-      {/* All groups stay in the DOM (crawlable); inactive ones are hidden. */}
       {s.groups.map((g, i) => (
         <div
           key={g.label}
@@ -50,6 +48,6 @@ export function Skills() {
           ))}
         </div>
       ))}
-    </McSection>
+    </div>
   );
 }

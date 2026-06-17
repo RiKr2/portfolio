@@ -2,7 +2,6 @@
 
 import { useLanguage } from "@/components/providers/language-provider";
 import { CONTACT } from "@/content";
-import { McSection } from "./mc-section";
 import { McButton } from "../mc-button";
 import { BlockIcon } from "../block-icon";
 
@@ -15,7 +14,7 @@ export function Contact() {
     { label: s.linkedinLabel, value: "linkedin.com/in/rikr2", href: CONTACT.linkedin, external: true, join: "join" },
   ];
   return (
-    <McSection id="contact" heading={s.heading}>
+    <div>
       <p className="mb-3 text-[#2b2b2b]">{s.intro}</p>
       <ul className="space-y-2">
         {servers.map((sv) => (
@@ -33,6 +32,6 @@ export function Contact() {
           </li>
         ))}
       </ul>
-    </McSection>
+    </div>
   );
 }

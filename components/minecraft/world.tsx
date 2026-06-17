@@ -5,9 +5,13 @@ import { SLOTS, clampX, nearestSign, type Sign } from "@/lib/minecraft";
 import type { SectionId } from "@/content";
 import { useLanguage } from "@/components/providers/language-provider";
 import { useAchievements } from "./achievements";
+import { useOverlay } from "./overlay";
 import { useMovement } from "./use-movement";
+import { useTheme } from "next-themes";
 import { Sky } from "./sky";
 import { Ground, BLOCK } from "./ground";
+import { Hills, Trees } from "./scenery";
+import { Particles } from "./particles";
 import { Character } from "./character";
 import { Hotbar } from "./hotbar";
 import { Hud } from "./hud";
@@ -24,6 +28,9 @@ const WORLD_WIDTH = SIGN_START + (SLOTS.length - 1) * SIGN_GAP + 360;
 export function World() {
   const { t } = useLanguage();
   const { unlock } = useAchievements();
+  const { openSection: openOverlay } = useOverlay();
+  const { resolvedTheme } = useTheme();
+  const night = resolvedTheme === "dark";
   const sceneRef = useRef<HTMLDivElement>(null);
   const [viewW, setViewW] = useState(0);
   const [selected, setSelected] = useState(0);
@@ -44,12 +51,9 @@ export function World() {
         const sign = SIGNS.find((s) => s.section === section)!;
         setX(clampX(sign.x - 6, 0, WORLD_WIDTH - CHAR_W));
       }
-      const reduce =
-        typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      document.getElementById(section)?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-      unlock(t.sections[section].heading, slot.icon);
+      openOverlay(section);
     },
-    [setX, unlock, t],
+    [setX, openOverlay],
   );
   useEffect(() => {
     openRef.current = openSection;
@@ -90,14 +94,23 @@ export function World() {
   const nearest = nearestSign(x + CHAR_W / 2, SIGNS, RANGE);
 
   return (
-    <section aria-label="Interactive world" className="relative">
+    <section aria-label="Interactive world" className="relative flex flex-1 flex-col">
       <div
         ref={sceneRef}
-        className="relative h-[58vh] min-h-[380px] max-h-[580px] w-full overflow-hidden border-b-4 border-[var(--grass-dark)] select-none"
+        className="relative w-full flex-1 min-h-[460px] overflow-hidden border-b-4 border-[var(--grass-dark)] select-none"
       >
         <Sky />
 
-        {/* Panning world layer */}
+        {/* Far parallax: distant hills */}
+        <div className="absolute inset-0" style={{ transform: `translateX(${-cameraX * 0.3}px)` }}>
+          <Hills />
+        </div>
+        {/* Mid parallax: trees */}
+        <div className="absolute inset-0" style={{ transform: `translateX(${-cameraX * 0.6}px)` }}>
+          <Trees />
+        </div>
+
+        {/* Panning world layer (foreground) */}
         <div
           className="absolute inset-0"
           style={{ transform: `translateX(${-cameraX}px)`, willChange: "transform" }}
@@ -142,8 +155,28 @@ export function World() {
             );
           })}
 
+          {/* Torches beside signs (lit at night) */}
+          {night &&
+            SIGNS.map((sg) => (
+              <span
+                key={`torch-${sg.section}`}
+                aria-hidden
+                className="absolute"
+                style={{ left: sg.x - 26, bottom: BLOCK * 2 }}
+              >
+                <span className="absolute bottom-0 left-0" style={{ width: 5, height: 26, background: "#7a5026" }} />
+                <span
+                  className="mc-torch absolute left-[-2px]"
+                  style={{ bottom: 24, width: 9, height: 9, background: "#ffb43c" }}
+                />
+              </span>
+            ))}
+
           <Character x={x} facing={facing} walking={walking} yOffset={jumpOffset} />
         </div>
+
+        {/* Ambient particles (fireflies at night) */}
+        <Particles />
 
         {/* Title / splash overlay */}
         <div className="pointer-events-none absolute left-1/2 top-4 w-[92%] max-w-2xl -translate-x-1/2 text-center">
