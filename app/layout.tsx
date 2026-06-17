@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { LanguageProvider } from "@/components/providers/language-provider";
 import { en } from "@/content/en";
+import { Analytics } from "@vercel/analytics/next";
 
 const mono = JetBrains_Mono({
   variable: "--font-jetbrains",
@@ -60,6 +61,7 @@ export default function RootLayout({
         <ThemeProvider>
           <LanguageProvider>{children}</LanguageProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
