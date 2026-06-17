@@ -68,6 +68,14 @@ export function Terminal() {
           toggleLang();
           setLines((l) => [...l, echo]);
           break;
+        case "play":
+          setLines((l) => [
+            ...l,
+            echo,
+            { id: nextId(), kind: "output", text: "launching the game…", tone: "accent" },
+          ]);
+          window.location.href = "/";
+          break;
       }
     },
     [t, resolvedTheme, setTheme, toggleLang, scrollToSection],

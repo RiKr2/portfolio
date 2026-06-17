@@ -18,6 +18,7 @@ export const COMMANDS: Command[] = [
   { id: "theme", aliases: [], kind: "util", description: "toggle dark/light" },
   { id: "lang", aliases: [], kind: "util", description: "toggle ES/EN" },
   { id: "clear", aliases: ["cls"], kind: "util", description: "clear the terminal" },
+  { id: "play", aliases: ["mc"], kind: "util", description: "launch the game" },
 ];
 
 const NAMES = COMMANDS.flatMap((c) => [c.id, ...c.aliases]);

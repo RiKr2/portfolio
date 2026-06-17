@@ -161,6 +161,14 @@ body {
   image-rendering: pixelated;
 }
 
+/* Home backdrop below the world scene (day: earthy; night: deep) */
+.mc-page {
+  background: linear-gradient(to bottom, var(--sky-bottom) 0%, #2a2018 18%, #1c150d 100%);
+}
+.dark .mc-page {
+  background: linear-gradient(to bottom, var(--sky-bottom) 0%, #0d0a16 28%, #07050e 100%);
+}
+
 /* Classic beveled GUI panel */
 .mc-bevel {
   border-style: solid;
@@ -170,6 +178,22 @@ body {
   border-right-color: var(--gui-dark);
   border-bottom-color: var(--gui-dark);
   background: var(--gui);
+  color: #2b2b2b; /* GUI panels are light gray in both day and night */
+}
+
+/* Beveled button: inverts on press */
+.mc-btn {
+  cursor: pointer;
+}
+.mc-btn:hover {
+  filter: brightness(1.06);
+}
+.mc-btn:active {
+  border-top-color: var(--gui-dark);
+  border-left-color: var(--gui-dark);
+  border-right-color: #fdfdfd;
+  border-bottom-color: #fdfdfd;
+  transform: translateY(1px);
 }
 /* Inset slot (inverted bevel) */
 .mc-inset {
@@ -192,6 +216,25 @@ body {
 }
 .mc-bob { animation: mc-bob 2.4s ease-in-out infinite; }
 
+/* Character walk cycle */
+@keyframes mc-leg-a {
+  0%, 100% { transform: rotate(16deg); }
+  50% { transform: rotate(-16deg); }
+}
+@keyframes mc-leg-b {
+  0%, 100% { transform: rotate(-16deg); }
+  50% { transform: rotate(16deg); }
+}
+.mc-limb { transform-origin: top center; }
+.mc-walking .mc-leg-a,
+.mc-walking .mc-arm-b { animation: mc-leg-a 0.42s linear infinite; }
+.mc-walking .mc-leg-b,
+.mc-walking .mc-arm-a { animation: mc-leg-b 0.42s linear infinite; }
+
 @media (prefers-reduced-motion: reduce) {
-  .mc-bob { animation: none !important; }
+  .mc-bob,
+  .mc-walking .mc-leg-a,
+  .mc-walking .mc-leg-b,
+  .mc-walking .mc-arm-a,
+  .mc-walking .mc-arm-b { animation: none !important; }
 }

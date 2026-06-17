@@ -22,7 +22,7 @@ export const es: Content = {
     hint: "Escribe un comando (prueba `help`) o toca uno abajo",
   },
   commands: {
-    help: "Comandos disponibles: about · experience · skills · education · publication · contact · theme · lang · clear",
+    help: "Comandos disponibles: about · experience · skills · education · publication · contact · theme · lang · clear · play",
     unknown: "comando no encontrado. Escribe `help` para ver la lista.",
     cleared: "",
     sectionEcho: "abriendo",
