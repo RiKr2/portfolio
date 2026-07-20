@@ -1,65 +1,61 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Press_Start_2P } from "next/font/google";
+import type { ReactNode } from "react";
 import "./globals.css";
-import { ThemeProvider } from "@/components/providers/theme-provider";
-import { LanguageProvider } from "@/components/providers/language-provider";
-import { en } from "@/content/en";
-
-const mono = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const pixel = Press_Start_2P({
-  variable: "--font-pixel",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ricardo-fundora.vercel.app"),
-  title: en.meta.title,
-  description: en.meta.description,
+  title: "Ricardo Fundora | Backend-minded Product Engineer",
+  description:
+    "Portfolio de Ricardo Fundora, product engineer especializado en backend, sistemas offline-first y productos digitales completos.",
   keywords: [
     "Ricardo Fundora",
-    "Software Engineer",
+    "Product Engineer",
     "Backend Developer",
+    "Software Engineer",
+    "Flutter",
+    "TypeScript",
     "Python",
     ".NET",
-    "Full-Stack",
-    "Remote",
   ],
   authors: [{ name: "Ricardo Fundora Hernández" }],
+  icons: {
+    icon: "/favicon.svg",
+  },
   openGraph: {
-    title: en.meta.title,
-    description: en.meta.description,
+    title: "Ricardo Fundora | Product Engineer",
+    description: "Productos completos para problemas que exigen sistemas sólidos.",
     type: "website",
-    locale: "en_US",
+    locale: "es_CU",
+    alternateLocale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: en.meta.title,
-    description: en.meta.description,
+    title: "Ricardo Fundora | Product Engineer",
+    description: "Backend-minded product engineer building complete digital products.",
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${mono.variable} ${pixel.variable} h-full`}
-      suppressHydrationWarning
-    >
-      <body className="font-mono min-h-full flex flex-col bg-bg text-fg antialiased">
-        <ThemeProvider>
-          <LanguageProvider>{children}</LanguageProvider>
-        </ThemeProvider>
+    <html lang="es" suppressHydrationWarning>
+      <body>
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Ricardo Fundora Hernández",
+              alternateName: "RiKr2",
+              jobTitle: "Product Engineer",
+              email: "mailto:rikr2fun2ra@gmail.com",
+              sameAs: [
+                "https://github.com/RiKr2",
+                "https://www.linkedin.com/in/rikr2/",
+              ],
+            }),
+          }}
+        />
       </body>
     </html>
   );

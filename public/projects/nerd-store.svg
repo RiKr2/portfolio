@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <clipPath id="screen"><rect width="390" height="844" rx="28"/></clipPath>
+    <linearGradient id="cover" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E94CFF"/><stop offset="1" stop-color="#00E5FF"/></linearGradient>
+    <linearGradient id="coverFade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></linearGradient>
+    <linearGradient id="s1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FC466B"/><stop offset="1" stop-color="#3F5EFB"/></linearGradient>
+    <linearGradient id="s2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#11998E"/><stop offset="1" stop-color="#38EF7D"/></linearGradient>
+    <linearGradient id="s3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8E2DE2"/><stop offset="1" stop-color="#4A00E0"/></linearGradient>
+    <linearGradient id="logo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A1066"/><stop offset="1" stop-color="#1A0B2E"/></linearGradient>
+  </defs>
+
+  <g clip-path="url(#screen)">
+    <rect width="390" height="844" fill="#0A0418"/>
+
+    <!-- cover -->
+    <rect width="390" height="160" fill="url(#cover)"/>
+    <g fill="#fff" opacity=".14">
+      <circle cx="70" cy="52" r="34"/><circle cx="330" cy="120" r="46"/><circle cx="220" cy="30" r="20"/>
+    </g>
+    <rect width="390" height="160" fill="url(#coverFade)"/>
+
+    <!-- status bar over cover -->
+    <text x="24" y="30" fill="#fff" font-size="13" font-weight="600">9:41</text>
+    <rect x="338" y="22" width="22" height="11" rx="3" stroke="#fff" fill="none" opacity=".9"/>
+    <rect x="340" y="24" width="14" height="7" rx="1.5" fill="#fff"/>
+    <!-- back + share -->
+    <path d="M26 66l-9 9 9 9" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <g stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round">
+      <circle cx="352" cy="68" r="3.4"/><circle cx="366" cy="76" r="3.4"/><circle cx="352" cy="84" r="3.4"/>
+      <path d="M355 70l8 4M355 82l8-4"/>
+    </g>
+    <!-- tier badge -->
+    <rect x="272" y="118" width="102" height="26" rx="13" fill="#000" opacity=".6"/>
+    <path d="M288 124l7 2.5v4.5c0 4-3 7-7 8-4-1-7-4-7-8v-4.5z" fill="#FFB300"/>
+    <text x="302" y="136" fill="#fff" font-size="12" font-weight="700">Veterano</text>
+
+    <!-- logo overlapping cover -->
+    <circle cx="62" cy="160" r="39" fill="#FFB300"/>
+    <circle cx="62" cy="160" r="36" fill="url(#logo)"/>
+    <g stroke="#FFC857" stroke-width="2.4" fill="none" stroke-linejoin="round">
+      <path d="M46 152h32l3.5 11H42.5zM48.5 163v16h27v-16M56.5 179v-9.5h11v9.5"/>
+    </g>
+    <!-- premium badge with halo -->
+    <circle cx="330" cy="188" r="26" fill="#FFC857" opacity=".12"/>
+    <rect x="286" y="176" width="88" height="24" rx="12" fill="#FFC857" opacity=".18" stroke="#FFC857" stroke-opacity=".5"/>
+    <circle cx="300" cy="188" r="6.5" fill="#FFB300"/>
+    <path d="M297.4 188l1.8 1.8 3.4-3.6" stroke="#0A0418" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    <text x="312" y="192" fill="#FFC857" font-size="10.5" font-weight="800">PREMIUM</text>
+
+    <!-- name / slogan -->
+    <text x="24" y="236" fill="#fff" font-size="24" font-weight="800" letter-spacing="1.2">GAMEZONE HABANA</text>
+    <text x="24" y="260" fill="#B9B3C7" font-size="13" font-style="italic">"Tu tienda gamer de confianza"</text>
+
+    <!-- meta row -->
+    <path d="M28 276l1.8 3.7 4.1.5-3 2.9.7 4.1-3.6-2-3.6 2 .7-4.1-3-2.9 4.1-.5z" fill="#FFC107"/>
+    <text x="42" y="285" fill="#D9D3E6" font-size="12">4.9 (31)</text>
+    <circle cx="104" cy="281" r="4" fill="#4CAF50"/>
+    <text x="114" y="285" fill="#D9D3E6" font-size="12">Abierto ahora</text>
+    <g stroke="#B9B3C7" stroke-width="1.4" fill="none">
+      <rect x="204" y="273" width="13" height="12" rx="2"/><path d="M204 277h13M207.5 271.5v3M213.5 271.5v3"/>
+    </g>
+    <text x="223" y="285" fill="#D9D3E6" font-size="12">Desde Mar 2025</text>
+
+    <!-- highlight chips -->
+    <rect x="24" y="300" width="122" height="30" rx="15" fill="#FFC857" opacity=".15" stroke="#FFC857" stroke-opacity=".4"/>
+    <text x="85" y="320" fill="#FFC857" font-size="12" font-weight="700" text-anchor="middle">🎮 Videojuegos</text>
+    <rect x="154" y="300" width="104" height="30" rx="15" fill="#FFC857" opacity=".15" stroke="#FFC857" stroke-opacity=".4"/>
+    <text x="206" y="320" fill="#FFC857" font-size="12" font-weight="700" text-anchor="middle">🎬 Películas</text>
+    <rect x="266" y="300" width="66" height="30" rx="15" fill="#FFC857" opacity=".15" stroke="#FFC857" stroke-opacity=".4"/>
+    <text x="299" y="320" fill="#FFC857" font-size="12" font-weight="700" text-anchor="middle">USB</text>
+
+    <!-- address -->
+    <path d="M26 346a7 7 0 0 1 14 0c0 5.3-7 10.6-7 10.6S26 351.3 26 346z" stroke="#B9B3C7" stroke-width="1.5" fill="none"/>
+    <circle cx="33" cy="346" r="2.3" fill="#B9B3C7"/>
+    <text x="50" y="351" fill="#B9B3C7" font-size="13">Ave. 51 #2810, Marianao</text>
+
+    <line x1="16" y1="374" x2="374" y2="374" stroke="#fff" stroke-opacity=".08"/>
+
+    <!-- Catálogo -->
+    <text x="16" y="404" fill="#fff" font-size="17" font-weight="800">Catálogo</text>
+
+    <!-- product cards -->
+    <g>
+      <rect x="16" y="420" width="150" height="252" rx="12" fill="#241640"/>
+      <rect x="16" y="420" width="150" height="180" rx="12" fill="url(#s1)"/>
+      <rect x="16" y="588" width="150" height="12" fill="#241640"/>
+      <path d="M91 470l6 13 14 1.5-10.5 9.5 3 14-12.5-7-12.5 7 3-14L71 484.5l14-1.5z" fill="#fff" opacity=".3"/>
+      <rect x="26" y="570" width="52" height="21" rx="10.5" fill="#000" opacity=".55"/>
+      <text x="52" y="584" fill="#fff" font-size="10" text-anchor="middle">USB</text>
+      <text x="28" y="622" fill="#fff" font-size="13" font-weight="700">Último Nivel II</text>
+      <text x="28" y="650" fill="#E94CFF" font-size="15" font-weight="800">350 CUP</text>
+      <g stroke="#E94CFF" stroke-width="1.7" fill="none" stroke-linejoin="round">
+        <path d="M132 640h4l2.6 12h12l2.6-8.6h-14"/>
+        <circle cx="140" cy="657" r="1.6" fill="#E94CFF"/><circle cx="149" cy="657" r="1.6" fill="#E94CFF"/>
+        <path d="M146 636v8M142 640h8"/>
+      </g>
+
+      <rect x="182" y="420" width="150" height="252" rx="12" fill="#241640"/>
+      <rect x="182" y="420" width="150" height="180" rx="12" fill="url(#s2)"/>
+      <rect x="182" y="588" width="150" height="12" fill="#241640"/>
+      <circle cx="237" cy="490" r="26" fill="#fff" opacity=".22"/>
+      <path d="M182 560l40-44 28 28 22-20 60 60v16H182z" fill="#04391f" opacity=".6"/>
+      <rect x="192" y="570" width="78" height="21" rx="10.5" fill="#000" opacity=".55"/>
+      <text x="231" y="584" fill="#fff" font-size="10" text-anchor="middle">Disco duro</text>
+      <text x="194" y="622" fill="#fff" font-size="13" font-weight="700">Selva Prohibida</text>
+      <text x="194" y="650" fill="#E94CFF" font-size="15" font-weight="800">200 CUP</text>
+      <g stroke="#E94CFF" stroke-width="1.7" fill="none" stroke-linejoin="round">
+        <path d="M298 640h4l2.6 12h12l2.6-8.6h-14"/>
+        <circle cx="306" cy="657" r="1.6" fill="#E94CFF"/><circle cx="315" cy="657" r="1.6" fill="#E94CFF"/>
+        <path d="M312 636v8M308 640h8"/>
+      </g>
+
+      <rect x="348" y="420" width="42" height="252" rx="12" fill="#241640"/>
+      <rect x="348" y="420" width="42" height="180" rx="12" fill="url(#s3)"/>
+    </g>
+
+    <!-- category chips + ver catálogo -->
+    <rect x="16" y="688" width="150" height="30" rx="15" fill="#241640"/>
+    <text x="91" y="708" fill="#D9D3E6" font-size="12" text-anchor="middle">Videojuegos · 74</text>
+    <rect x="174" y="688" width="130" height="30" rx="15" fill="#241640"/>
+    <text x="239" y="708" fill="#D9D3E6" font-size="12" text-anchor="middle">Películas · 52</text>
+    <text x="195" y="748" fill="#E94CFF" font-size="13" font-weight="700" text-anchor="middle">Ver catálogo completo (126 títulos)</text>
+
+    <!-- sticky action bar -->
+    <rect x="0" y="768" width="390" height="76" fill="#1A0B2E"/>
+    <rect x="14" y="782" width="150" height="46" rx="12" fill="#25D366"/>
+    <path d="M44 796a9 9 0 0 1 9 9c0 2.2-1 4.4-2.2 5.6l1.2 4.4-4.6-1.7A9 9 0 1 1 44 796z" stroke="#fff" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+    <text x="64" y="810" fill="#fff" font-size="14" font-weight="700">WhatsApp</text>
+    <rect x="174" y="782" width="100" height="46" rx="12" fill="none" stroke="#E94CFF" stroke-width="1.4"/>
+    <path d="M196 799c1-2 3.8-2 4.7 0l1.4 2.8c.5 1 0 2.3-.9 3.2s-.9 2.3 0 3.7 2.8 2.3 3.7 1.4 2.3-1.4 3.2-.9l2.8 1.4c2 1 2 3.7 0 4.7-2.3 2.3-6.5 1.8-10.2-1.9s-6-11.9-4.7-14.4z" stroke="#E94CFF" stroke-width="1.5" fill="none"/>
+    <text x="216" y="810" fill="#fff" font-size="14" font-weight="600">Llamar</text>
+    <rect x="284" y="782" width="92" height="46" rx="12" fill="none" stroke="#E94CFF" stroke-width="1.4"/>
+    <path d="M306 818l3.6-13 11-3.6-3.6 13z" stroke="#E94CFF" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+    <text x="326" y="810" fill="#fff" font-size="14" font-weight="600">Llegar</text>
+  </g>
+</svg>
