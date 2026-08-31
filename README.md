@@ -1,7 +1,8 @@
 # Ricardo Fundora Portfolio
 
-Portfolio editorial e independiente para Ricardo Fundora. Presenta tres productos principales,
-un laboratorio de proyectos, experiencia profesional y contacto en español e inglés.
+Portfolio orientado a producto y captación de clientes para Ricardo Fundora. Presenta cuatro
+casos principales, capacidades de desarrollo, proyectos en construcción, proceso de trabajo y
+contacto en español e inglés.
 
 ## Desarrollo
 
@@ -26,6 +27,7 @@ de archivos estáticos.
 
 - `app/`: layout, metadatos, estilos y rutas de Next.js.
 - `components/portfolio.tsx`: experiencia interactiva principal.
-- `content/portfolio.ts`: contenido bilingüe y datos de los proyectos.
+- `content/portfolio.ts`: narrativa bilingüe, casos, soluciones y proceso de trabajo.
 - `public/projects/`: activos originales de Kontado, Nerd Vault y Numb3rs.
+- `public/ricardo-fundora.webp`: retrato optimizado utilizado en la presentación principal.
 - `public/fonts/`: tipografía local, sin dependencias remotas.

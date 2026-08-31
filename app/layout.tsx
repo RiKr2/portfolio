@@ -4,14 +4,17 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ricardo Fundora | Backend-minded Product Engineer",
+  title: "Ricardo Fundora | Diseño y desarrollo de productos digitales",
   description:
-    "Portfolio de Ricardo Fundora, product engineer especializado en backend, sistemas offline-first y productos digitales completos.",
+    "Aplicaciones móviles, plataformas SaaS, marketplaces y sistemas digitales diseñados y desarrollados de principio a fin por Ricardo Fundora.",
   keywords: [
     "Ricardo Fundora",
     "Product Engineer",
     "Backend Developer",
     "Software Engineer",
+    "Desarrollo de aplicaciones",
+    "SaaS",
+    "Marketplace",
     "Flutter",
     "TypeScript",
     "Python",
@@ -22,16 +25,16 @@ export const metadata: Metadata = {
     icon: "/favicon.svg",
   },
   openGraph: {
-    title: "Ricardo Fundora | Product Engineer",
-    description: "Productos completos para problemas que exigen sistemas sólidos.",
+    title: "Ricardo Fundora | Productos digitales de principio a fin",
+    description: "Convierto ideas complejas en aplicaciones listas para usarse.",
     type: "website",
     locale: "es_CU",
     alternateLocale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ricardo Fundora | Product Engineer",
-    description: "Backend-minded product engineer building complete digital products.",
+    title: "Ricardo Fundora | Product design + engineering",
+    description: "I turn complex ideas into applications ready to be used.",
   },
 };
 

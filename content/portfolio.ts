@@ -1,5 +1,5 @@
 export type Locale = "es" | "en";
-export type ProjectId = "kontado" | "nerd-vault" | "numb3rs";
+export type ProjectId = "modavyr" | "kontado" | "nerd-vault" | "numb3rs";
 
 export interface ProjectContent {
   id: ProjectId;
@@ -15,12 +15,29 @@ export interface ProjectContent {
   stage: string;
 }
 
+interface SolutionContent {
+  index: string;
+  title: string;
+  description: string;
+  projectId: ProjectId;
+  proof: string;
+}
+
+interface BuildingContent {
+  name: string;
+  stage: string;
+  thesis: string;
+  description: string;
+  signal: string;
+  evidence: string[];
+  stack: string[];
+}
+
 export interface PortfolioContent {
   nav: {
-    work: string;
-    lab: string;
-    experience: string;
-    about: string;
+    projects: string;
+    solutions: string;
+    process: string;
     contact: string;
     menu: string;
     close: string;
@@ -28,13 +45,13 @@ export interface PortfolioContent {
   };
   hero: {
     eyebrow: string;
-    name: string;
-    role: string;
+    headline: string;
     intro: string;
     workCta: string;
     contactCta: string;
     status: string;
-    canvasLabel: string;
+    showcaseLabel: string;
+    showcaseCaption: string;
   };
   signals: { value: string; label: string }[];
   work: {
@@ -49,43 +66,24 @@ export interface PortfolioContent {
     closeCase: string;
   };
   projects: ProjectContent[];
-  lab: {
+  solutions: {
     eyebrow: string;
     title: string;
     intro: string;
-    items: {
-      name: string;
-      stage: string;
-      description: string;
-      stack: string[];
-      signal: string;
-    }[];
+    proofLabel: string;
+    items: SolutionContent[];
   };
-  principles: {
-    eyebrow: string;
-    title: string;
-    items: { index: string; title: string; description: string }[];
-  };
-  experience: {
+  building: {
     eyebrow: string;
     title: string;
     intro: string;
-    items: {
-      period: string;
-      company: string;
-      role: string;
-      description?: string;
-      stack: string[];
-    }[];
+    items: BuildingContent[];
   };
-  about: {
+  process: {
     eyebrow: string;
     title: string;
-    paragraphs: string[];
-    educationLabel: string;
-    education: string;
-    publicationLabel: string;
-    publication: string;
+    intro: string;
+    items: { index: string; title: string; description: string; outcome: string }[];
   };
   contact: {
     eyebrow: string;
@@ -94,6 +92,7 @@ export interface PortfolioContent {
     email: string;
     linkedin: string;
     github: string;
+    note: string;
   };
   footer: string;
 }
@@ -107,55 +106,75 @@ export const contactLinks = {
 export const dictionaries: Record<Locale, PortfolioContent> = {
   es: {
     nav: {
-      work: "Trabajo",
-      lab: "Laboratorio",
-      experience: "Experiencia",
-      about: "Perfil",
+      projects: "Proyectos",
+      solutions: "Qué construyo",
+      process: "Proceso",
       contact: "Hablemos",
       menu: "Abrir navegación",
       close: "Cerrar navegación",
       theme: "Cambiar tema",
     },
     hero: {
-      eyebrow: "Ricardo Fundora / Product Engineer",
-      name: "Ricardo Fundora",
-      role: "Backend-minded product engineer.",
+      eyebrow: "Diseño + ingeniería de producto",
+      headline: "Convierto ideas complejas en aplicaciones listas para usarse.",
       intro:
-        "Diseño y construyo productos completos para problemas que exigen reglas claras, sistemas sólidos y una ejecución cuidadosa.",
-      workCta: "Explorar trabajo",
-      contactCta: "Iniciar conversación",
-      status: "Disponible para proyectos seleccionados",
-      canvasLabel: "Mapa de productos",
+        "Diseño y desarrollo productos digitales de principio a fin: aplicaciones móviles, plataformas SaaS, marketplaces y sistemas para operaciones reales.",
+      workCta: "Ver proyectos",
+      contactCta: "Cuéntame tu idea",
+      status: "Disponible para nuevos proyectos",
+      showcaseLabel: "Productos diseñados y construidos por Ricardo Fundora",
+      showcaseCaption: "Del concepto al producto",
     },
     signals: [
-      { value: "2016", label: "Construyendo software desde" },
-      { value: "5+ años", label: "Trabajo remoto internacional" },
-      { value: "5 productos", label: "Diseñados y construidos en solitario" },
-      { value: "ES / EN", label: "Colaboración sin fronteras" },
+      { value: "10 años", label: "construyendo software" },
+      { value: "End-to-end", label: "producto, frontend y backend" },
+      { value: "Mobile + Web", label: "una visión, múltiples superficies" },
+      { value: "ES / EN", label: "colaboración internacional" },
     ],
     work: {
-      eyebrow: "Trabajo seleccionado",
-      title: "Productos donde la complejidad tiene un propósito.",
+      eyebrow: "Proyectos seleccionados",
+      title: "Productos reales para problemas que no caben en una plantilla.",
       intro:
-        "Cada caso parte de un dominio distinto. Los une la misma disciplina: comprender las reglas, diseñar el sistema y llevarlo hasta una experiencia usable.",
-      openCase: "Abrir caso",
-      architecture: "Arquitectura",
-      challenge: "El reto",
-      decision: "La decisión",
-      evidence: "Evidencia construida",
+        "Cada proyecto conecta estrategia, experiencia e ingeniería. No son ejercicios visuales: son sistemas diseñados alrededor de usuarios, reglas y restricciones reales.",
+      openCase: "Explorar el caso",
+      architecture: "Arquitectura y stack",
+      challenge: "El problema",
+      decision: "La solución",
+      evidence: "Qué demuestra",
       closeCase: "Cerrar caso",
     },
     projects: [
       {
-        id: "kontado",
+        id: "modavyr",
         index: "01",
+        discipline: "SaaS modular / Telegram",
+        name: "MODAVYR",
+        thesis: "Una plataforma para lanzar aplicaciones completas dentro de Telegram.",
+        summary:
+          "Un núcleo multitenant que combina módulos reutilizables, personalización y desarrollo a medida para comercio, membresías, fidelización, comunidades y experiencias interactivas.",
+        challenge:
+          "Permitir que productos con reglas muy diferentes compartan identidad, organizaciones, facturación, analítica y canales sin convertir cada nueva aplicación en un bot aislado y difícil de mantener.",
+        approach:
+          "Separé la plataforma en Platform Core, App Core, módulos verticales y adaptadores de canal. Telegram Bot y Mini App traducen interacciones mientras las reglas de cada producto permanecen independientes del transporte.",
+        evidence: [
+          "RPG, Loyalty, Membership y Commerce sobre un mismo núcleo",
+          "Telegram Bot y Mini App comparten usuarios, módulos y estado",
+          "Organizaciones, permisos, billing, auditoría y analítica multitenant",
+          "20 migraciones, 346 pruebas y hardening operativo documentado",
+        ],
+        stack: ["Next.js", "TypeScript", "tRPC", "PostgreSQL", "Prisma", "grammY", "Docker"],
+        stage: "MVP privado funcional / en evolución",
+      },
+      {
+        id: "kontado",
+        index: "02",
         discipline: "Operaciones / Offline-first",
         name: "Kontado",
         thesis: "Un sistema operativo para negocios que no pueden depender de internet.",
         summary:
           "POS multinegocio para el contexto cubano. Reúne ventas, inventario, caja, gastos, restaurantes, servicios y producción en una aplicación que mantiene su núcleo operativo sin conexión.",
         challenge:
-          "Modelar varios tipos de negocio, monedas, roles y flujos transaccionales sin asumir conectividad permanente ni una infraestructura central disponible.",
+          "Modelar varios tipos de negocio, monedas, roles y flujos transaccionales sin asumir conectividad permanente ni una infraestructura central siempre disponible.",
         approach:
           "Una arquitectura local-first sobre Drift y SQLite, organizada por dominios. Cada negocio aísla datos y configuración, mientras permisos y migraciones mantienen el sistema gobernable a medida que crece.",
         evidence: [
@@ -169,7 +188,7 @@ export const dictionaries: Record<Locale, PortfolioContent> = {
       },
       {
         id: "nerd-vault",
-        index: "02",
+        index: "03",
         discipline: "Marketplace / Integraciones",
         name: "Nerd Vault",
         thesis: "Descubrimiento multimedia conectado con vendedores locales.",
@@ -178,7 +197,7 @@ export const dictionaries: Record<Locale, PortfolioContent> = {
         challenge:
           "Conectar catálogos globales con comercio local en un entorno de conectividad limitada, sin exponer credenciales externas ni agotar límites de API.",
         approach:
-          "Supabase como núcleo de datos y seguridad, Edge Functions como proxies con caché compartida, y una aplicación Flutter preparada para degradarse con datos locales cuando la red desaparece.",
+          "Supabase actúa como núcleo de datos y seguridad, Edge Functions como proxies con caché compartida, y Flutter mantiene una experiencia útil cuando la red desaparece.",
         evidence: [
           "Integración con TMDB, RAWG y LastFM",
           "PostgreSQL, Auth, Storage, Edge Functions y RLS",
@@ -190,7 +209,7 @@ export const dictionaries: Record<Locale, PortfolioContent> = {
       },
       {
         id: "numb3rs",
-        index: "03",
+        index: "04",
         discipline: "Datos / Algoritmos",
         name: "Numb3rs",
         thesis: "Datos históricos convertidos en estrategias que se pueden comprobar.",
@@ -210,160 +229,192 @@ export const dictionaries: Record<Locale, PortfolioContent> = {
         stage: "Producto privado / completo",
       },
     ],
-    lab: {
-      eyebrow: "Product Lab",
-      title: "La curiosidad también necesita un lugar para crecer.",
+    solutions: {
+      eyebrow: "Qué podemos construir juntos",
+      title: "Una idea clara. El sistema correcto para hacerla funcionar.",
       intro:
-        "Sistemas en construcción donde exploro motores de juego, experiencias educativas y nuevas formas de convertir reglas en interacción.",
+        "Trabajo desde el problema hasta el lanzamiento, escogiendo la arquitectura y la experiencia que necesita el producto, no las que impone una plantilla.",
+      proofLabel: "Ver evidencia",
       items: [
         {
-          name: "SaaS RPG para Telegram",
-          stage: "En construcción",
+          index: "01",
+          title: "Plataformas SaaS y productos modulares",
+          description: "Organizaciones, roles, suscripciones, paneles, automatización y módulos capaces de crecer con el negocio.",
+          projectId: "modavyr",
+          proof: "MODAVYR",
+        },
+        {
+          index: "02",
+          title: "Aplicaciones para operaciones reales",
+          description: "Ventas, inventario, administración, flujos internos y funcionamiento resiliente incluso con poca conectividad.",
+          projectId: "kontado",
+          proof: "Kontado",
+        },
+        {
+          index: "03",
+          title: "Marketplaces y productos para consumidores",
+          description: "Catálogos, perfiles, órdenes, mapas, reputación e integraciones con servicios externos.",
+          projectId: "nerd-vault",
+          proof: "Nerd Vault",
+        },
+        {
+          index: "04",
+          title: "Productos basados en datos",
+          description: "Dashboards, algoritmos, análisis histórico, reportes y herramientas que vuelven útil la información compleja.",
+          projectId: "numb3rs",
+          proof: "Numb3rs",
+        },
+      ],
+    },
+    building: {
+      eyebrow: "En construcción",
+      title: "Nuevos productos, nuevas preguntas difíciles.",
+      intro:
+        "Proyectos en desarrollo que muestran cómo exploro el dominio, valido la experiencia y construyo las reglas antes de acelerar.",
+      items: [
+        {
+          name: "Plataforma Comunitaria",
+          stage: "Prototipo + núcleo de dominio",
+          thesis: "Infraestructura de confianza para que una comunidad pueda decidir, financiar y contratar con transparencia.",
           description:
-            "Plataforma visual para crear juegos de texto modulares sin código. Combina dashboard, motor de juego, bots multi-tenant, billing e integración con Telegram.",
-          stack: ["Next.js", "TypeScript", "tRPC", "Prisma", "PostgreSQL", "grammY"],
-          signal: "Motor modular + webhooks + estado versionado",
+            "Comunidades verificadas convierten necesidades en trabajos, recaudan fondos, comparan propuestas y liberan el pago cuando el resultado cumple un contrato verificable.",
+          signal: "Gobernanza + financiación colectiva + marketplace + evidencia",
+          evidence: [
+            "Documento maestro de producto y 53 pantallas identificadas",
+            "Prototipo interactivo mobile-first",
+            "Estados paralelos de aprobación, ejecución y finanzas",
+            "Ledger simulado de doble entrada y reglas de dominio probadas",
+          ],
+          stack: ["React", "TypeScript", "PostgreSQL", "Domain modeling", "Double-entry ledger"],
         },
         {
           name: "QuizThena",
           stage: "Prototipo técnico",
+          thesis: "Aprendizaje convertido en progreso, competencia y descubrimiento.",
           description:
-            "Exploración de una plataforma educativa basada en quizzes, progreso y competencia para niños y adolescentes.",
+            "Exploración de una plataforma educativa basada en quizzes, progresión y competencia para niños y adolescentes.",
+          signal: "Motor de quizzes + autenticación + paquetes desacoplados",
+          evidence: [
+            "Experiencia móvil orientada a sesiones cortas",
+            "Progreso y competencia como bucle de participación",
+          ],
           stack: ["Flutter", "BLoC", "Supabase", "Turborepo", "Apklis"],
-          signal: "Motor de quizzes + auth + paquetes desacoplados",
         },
       ],
     },
-    principles: {
-      eyebrow: "Cómo construyo",
-      title: "Decisiones técnicas conectadas con el producto.",
-      items: [
-        {
-          index: "A",
-          title: "Modelar antes de acelerar",
-          description: "Entender actores, estados y restricciones evita que la arquitectura persiga al producto más tarde.",
-        },
-        {
-          index: "B",
-          title: "Diseñar para el contexto",
-          description: "Conectividad, pagos, dispositivos y hábitos reales son parte del sistema, no notas al margen.",
-        },
-        {
-          index: "C",
-          title: "Profundidad sin fricción",
-          description: "La complejidad puede vivir debajo. La persona que usa el producto no tiene por qué cargar con ella.",
-        },
-        {
-          index: "D",
-          title: "Hacer visible el criterio",
-          description: "Documentar decisiones, límites y próximos pasos vuelve al producto más fácil de mejorar y mantener.",
-        },
-      ],
-    },
-    experience: {
-      eyebrow: "Trayectoria",
-      title: "Backend primero. Producto siempre presente.",
+    process: {
+      eyebrow: "De idea a producto",
+      title: "Un proceso claro para reducir incertidumbre sin frenar el avance.",
       intro:
-        "Experiencia remota construyendo APIs, automatizaciones y sistemas para equipos internacionales, junto a productos propios desarrollados de extremo a extremo.",
+        "Cada etapa deja una decisión o un entregable concreto. El objetivo es aprender temprano y construir sobre una base que permita seguir evolucionando.",
       items: [
         {
-          period: "2026 — hoy",
-          company: "Selector",
-          role: "Full-Stack Developer",
-          stack: ["AI", "AWS", "TypeScript", "Python"],
+          index: "01",
+          title: "Descubrir",
+          description: "Aterrizamos el problema, las personas, el contexto y las restricciones que realmente definen el producto.",
+          outcome: "Problema y oportunidad claros",
         },
         {
-          period: "2022 — hoy",
-          company: "General Software Inc.",
-          role: "Backend Developer",
-          stack: ["C#", "Python", "PHP", "Docker"],
+          index: "02",
+          title: "Definir",
+          description: "Diseñamos el alcance del MVP, los recorridos principales y las decisiones técnicas que evitan rehacer después.",
+          outcome: "Alcance y dirección compartidos",
         },
         {
-          period: "2022 — 2025",
-          company: "AlayaCare",
-          role: "Backend Developer",
-          description: "Soluciones de facturación y optimización de recuperación de datos para una plataforma cloud de cuidado domiciliario.",
-          stack: ["PHP", "Python", "Vue", "AWS", "Docker"],
+          index: "03",
+          title: "Construir",
+          description: "Conecto experiencia, frontend, backend, datos e integraciones en incrementos que se pueden probar.",
+          outcome: "Producto funcional y verificable",
         },
         {
-          period: "2020 — 2022",
-          company: "Wisegar",
-          role: "Software Developer",
-          stack: ["C#", ".NET"],
+          index: "04",
+          title: "Lanzar y evolucionar",
+          description: "Preparamos el despliegue, observamos el uso y convertimos evidencia real en las siguientes mejoras.",
+          outcome: "Una base preparada para crecer",
         },
       ],
-    },
-    about: {
-      eyebrow: "Perfil",
-      title: "Ingeniería con curiosidad de constructor.",
-      paragraphs: [
-        "Soy ingeniero de software cubano, graduado de Ciencias de la Computación y desarrollador desde 2016. Mi especialidad es backend, pero trabajo de extremo a extremo cuando el producto lo necesita.",
-        "Me atraen los dominios con reglas difíciles, los sistemas que deben funcionar bajo restricciones reales y el desarrollo de videojuegos como espacio para experimentar con interacción, progresión y mundos vivos.",
-      ],
-      educationLabel: "Formación",
-      education: "Licenciatura en Ciencias de la Computación · Universidad de La Habana · 2011—2016",
-      publicationLabel: "Investigación",
-      publication: "Herramientas citogenéticas para la construcción semiautomática de cariotipos · 2016",
     },
     contact: {
-      eyebrow: "Contacto",
-      title: "¿Hay un producto difícil que merece existir?",
-      intro: "Disponible para productos, colaboraciones técnicas y conversaciones donde el reto sea parte del atractivo.",
-      email: "Escribir por email",
+      eyebrow: "Tu próximo producto",
+      title: "¿Tienes una aplicación en mente?",
+      intro:
+        "Cuéntame el problema, quién la utilizaría y en qué etapa se encuentra. Puedo ayudarte a definir el MVP, construirlo y preparar sus siguientes iteraciones.",
+      email: "Cuéntame tu idea",
       linkedin: "Conectar en LinkedIn",
       github: "Explorar GitHub",
+      note: "Normalmente respondo en 1–2 días laborables.",
     },
-    footer: "Diseñado y construido por Ricardo Fundora.",
+    footer: "Productos digitales diseñados y construidos con intención.",
   },
   en: {
     nav: {
-      work: "Work",
-      lab: "Lab",
-      experience: "Experience",
-      about: "Profile",
+      projects: "Projects",
+      solutions: "What I build",
+      process: "Process",
       contact: "Let's talk",
       menu: "Open navigation",
       close: "Close navigation",
       theme: "Change theme",
     },
     hero: {
-      eyebrow: "Ricardo Fundora / Product Engineer",
-      name: "Ricardo Fundora",
-      role: "Backend-minded product engineer.",
+      eyebrow: "Product design + engineering",
+      headline: "I turn complex ideas into applications ready to be used.",
       intro:
-        "I design and build complete products for problems that demand clear rules, solid systems, and thoughtful execution.",
-      workCta: "Explore work",
-      contactCta: "Start a conversation",
-      status: "Available for selected projects",
-      canvasLabel: "Product map",
+        "I design and build digital products end to end: mobile applications, SaaS platforms, marketplaces, and systems for real-world operations.",
+      workCta: "View projects",
+      contactCta: "Tell me your idea",
+      status: "Available for new projects",
+      showcaseLabel: "Products designed and built by Ricardo Fundora",
+      showcaseCaption: "From concept to product",
     },
     signals: [
-      { value: "2016", label: "Building software since" },
-      { value: "5+ years", label: "International remote work" },
-      { value: "5 products", label: "Designed and built independently" },
-      { value: "ES / EN", label: "Borderless collaboration" },
+      { value: "10 years", label: "building software" },
+      { value: "End-to-end", label: "product, frontend, and backend" },
+      { value: "Mobile + Web", label: "one vision, multiple surfaces" },
+      { value: "ES / EN", label: "international collaboration" },
     ],
     work: {
-      eyebrow: "Selected work",
-      title: "Products where complexity serves a purpose.",
+      eyebrow: "Selected projects",
+      title: "Real products for problems that do not fit a template.",
       intro:
-        "Each case starts in a different domain. The discipline is the same: understand the rules, design the system, and carry it into a usable experience.",
-      openCase: "Open case",
-      architecture: "Architecture",
-      challenge: "The challenge",
-      decision: "The decision",
-      evidence: "Evidence built",
+        "Every project connects strategy, experience, and engineering. These are not visual exercises; they are systems designed around real users, rules, and constraints.",
+      openCase: "Explore the case",
+      architecture: "Architecture and stack",
+      challenge: "The problem",
+      decision: "The solution",
+      evidence: "What it proves",
       closeCase: "Close case",
     },
     projects: [
       {
-        id: "kontado",
+        id: "modavyr",
         index: "01",
+        discipline: "Modular SaaS / Telegram",
+        name: "MODAVYR",
+        thesis: "A platform for launching complete applications inside Telegram.",
+        summary:
+          "A multi-tenant core combining reusable modules, customization, and bespoke development for commerce, memberships, loyalty, communities, and interactive experiences.",
+        challenge:
+          "Let products with very different rules share identity, organizations, billing, analytics, and channels without turning each new application into an isolated bot that is difficult to maintain.",
+        approach:
+          "I separated the platform into Platform Core, App Core, vertical modules, and channel adapters. Telegram Bot and Mini App translate interactions while each product's rules stay independent from transport.",
+        evidence: [
+          "RPG, Loyalty, Membership, and Commerce on one shared core",
+          "Telegram Bot and Mini App share users, modules, and state",
+          "Multi-tenant organizations, permissions, billing, audit, and analytics",
+          "20 migrations, 346 tests, and documented operational hardening",
+        ],
+        stack: ["Next.js", "TypeScript", "tRPC", "PostgreSQL", "Prisma", "grammY", "Docker"],
+        stage: "Functional private MVP / evolving",
+      },
+      {
+        id: "kontado",
+        index: "02",
         discipline: "Operations / Offline-first",
         name: "Kontado",
         thesis: "An operating system for businesses that cannot depend on the internet.",
         summary:
-          "A multi-business POS built for the Cuban context. It brings sales, inventory, cash management, expenses, restaurants, services, and production into an application whose core remains operational offline.",
+          "A multi-business POS for the Cuban context, bringing sales, inventory, cash, expenses, restaurants, services, and production into an application that keeps working offline.",
         challenge:
           "Model multiple business types, currencies, roles, and transactional flows without assuming permanent connectivity or always-available central infrastructure.",
         approach:
@@ -379,16 +430,16 @@ export const dictionaries: Record<Locale, PortfolioContent> = {
       },
       {
         id: "nerd-vault",
-        index: "02",
+        index: "03",
         discipline: "Marketplace / Integrations",
         name: "Nerd Vault",
         thesis: "Media discovery connected to local sellers.",
         summary:
-          "A two-sided marketplace where people discover movies, series, games, and music, then find nearby sellers able to deliver them.",
+          "A two-sided marketplace where people discover films, shows, games, and music, then find nearby sellers able to deliver them.",
         challenge:
           "Connect global catalogs to local commerce in a low-connectivity environment without exposing external credentials or exhausting API limits.",
         approach:
-          "Supabase as the data and security core, Edge Functions as shared caching proxies, and a Flutter application built to degrade to local data when the network disappears.",
+          "Supabase acts as the data and security core, Edge Functions as shared caching proxies, and Flutter keeps the experience useful when the network disappears.",
         evidence: [
           "TMDB, RAWG, and LastFM integrations",
           "PostgreSQL, Auth, Storage, Edge Functions, and RLS",
@@ -400,7 +451,7 @@ export const dictionaries: Record<Locale, PortfolioContent> = {
       },
       {
         id: "numb3rs",
-        index: "03",
+        index: "04",
         discipline: "Data / Algorithms",
         name: "Numb3rs",
         thesis: "Historical data turned into strategies that can be tested.",
@@ -420,109 +471,74 @@ export const dictionaries: Record<Locale, PortfolioContent> = {
         stage: "Private product / complete",
       },
     ],
-    lab: {
-      eyebrow: "Product Lab",
-      title: "Curiosity needs room to grow, too.",
+    solutions: {
+      eyebrow: "What we can build together",
+      title: "A clear idea. The right system to make it work.",
       intro:
-        "Systems in progress where I explore game engines, learning experiences, and new ways to turn rules into interaction.",
+        "I work from the problem through launch, choosing the architecture and experience the product needs rather than those imposed by a template.",
+      proofLabel: "View evidence",
+      items: [
+        { index: "01", title: "SaaS platforms and modular products", description: "Organizations, roles, subscriptions, dashboards, automation, and modules that can grow with the business.", projectId: "modavyr", proof: "MODAVYR" },
+        { index: "02", title: "Applications for real-world operations", description: "Sales, inventory, administration, internal workflows, and resilient operation even with limited connectivity.", projectId: "kontado", proof: "Kontado" },
+        { index: "03", title: "Marketplaces and consumer products", description: "Catalogs, profiles, orders, maps, reputation, and integrations with external services.", projectId: "nerd-vault", proof: "Nerd Vault" },
+        { index: "04", title: "Data-driven products", description: "Dashboards, algorithms, historical analysis, reports, and tools that make complex information useful.", projectId: "numb3rs", proof: "Numb3rs" },
+      ],
+    },
+    building: {
+      eyebrow: "Now building",
+      title: "New products, new difficult questions.",
+      intro:
+        "Work in progress showing how I explore a domain, validate the experience, and build the rules before accelerating.",
       items: [
         {
-          name: "Telegram RPG SaaS",
-          stage: "In progress",
+          name: "Community Platform",
+          stage: "Prototype + domain core",
+          thesis: "Trust infrastructure for communities to decide, fund, and hire transparently.",
           description:
-            "A visual platform for building modular text games without code. It combines a dashboard, game engine, multi-tenant bots, billing, and Telegram integration.",
-          stack: ["Next.js", "TypeScript", "tRPC", "Prisma", "PostgreSQL", "grammY"],
-          signal: "Modular engine + webhooks + versioned state",
+            "Verified communities turn needs into work, collectively fund solutions, compare proposals, and release payment when the result fulfills a verifiable contract.",
+          signal: "Governance + collective funding + marketplace + evidence",
+          evidence: [
+            "Product master document and 53 identified screens",
+            "Interactive mobile-first prototype",
+            "Parallel approval, execution, and financial states",
+            "Simulated double-entry ledger and tested domain rules",
+          ],
+          stack: ["React", "TypeScript", "PostgreSQL", "Domain modeling", "Double-entry ledger"],
         },
         {
           name: "QuizThena",
           stage: "Technical prototype",
+          thesis: "Learning turned into progress, competition, and discovery.",
           description:
             "An exploration of a quiz, progression, and competition-based learning platform for children and teenagers.",
+          signal: "Quiz engine + authentication + decoupled packages",
+          evidence: ["Mobile experience for short sessions", "Progress and competition as the engagement loop"],
           stack: ["Flutter", "BLoC", "Supabase", "Turborepo", "Apklis"],
-          signal: "Quiz engine + auth + decoupled packages",
         },
       ],
     },
-    principles: {
-      eyebrow: "How I build",
-      title: "Technical decisions connected to the product.",
-      items: [
-        {
-          index: "A",
-          title: "Model before accelerating",
-          description: "Understanding actors, states, and constraints keeps architecture from chasing the product later.",
-        },
-        {
-          index: "B",
-          title: "Design for context",
-          description: "Connectivity, payments, devices, and real habits are part of the system, not side notes.",
-        },
-        {
-          index: "C",
-          title: "Depth without friction",
-          description: "Complexity can live underneath. The person using the product should not have to carry it.",
-        },
-        {
-          index: "D",
-          title: "Make judgment visible",
-          description: "Documenting decisions, limits, and next steps makes products easier to improve and maintain.",
-        },
-      ],
-    },
-    experience: {
-      eyebrow: "Experience",
-      title: "Backend first. Product always present.",
+    process: {
+      eyebrow: "From idea to product",
+      title: "A clear process to reduce uncertainty without slowing progress.",
       intro:
-        "Remote experience building APIs, automation, and systems for international teams, alongside independently designed end-to-end products.",
+        "Every stage leaves a concrete decision or deliverable. The goal is to learn early and build on a foundation that can keep evolving.",
       items: [
-        {
-          period: "2026 — now",
-          company: "Selector",
-          role: "Full-Stack Developer",
-          stack: ["AI", "AWS", "TypeScript", "Python"],
-        },
-        {
-          period: "2022 — now",
-          company: "General Software Inc.",
-          role: "Backend Developer",
-          stack: ["C#", "Python", "PHP", "Docker"],
-        },
-        {
-          period: "2022 — 2025",
-          company: "AlayaCare",
-          role: "Backend Developer",
-          description: "Billing solutions and data-retrieval optimization for a cloud home-care platform.",
-          stack: ["PHP", "Python", "Vue", "AWS", "Docker"],
-        },
-        {
-          period: "2020 — 2022",
-          company: "Wisegar",
-          role: "Software Developer",
-          stack: ["C#", ".NET"],
-        },
+        { index: "01", title: "Discover", description: "We ground the problem, people, context, and constraints that truly define the product.", outcome: "A clear problem and opportunity" },
+        { index: "02", title: "Define", description: "We design the MVP scope, key journeys, and technical decisions that prevent expensive rework later.", outcome: "Shared scope and direction" },
+        { index: "03", title: "Build", description: "I connect experience, frontend, backend, data, and integrations in increments that can be tested.", outcome: "A functional, verifiable product" },
+        { index: "04", title: "Launch and evolve", description: "We prepare deployment, observe usage, and turn real evidence into the next improvements.", outcome: "A foundation ready to grow" },
       ],
-    },
-    about: {
-      eyebrow: "Profile",
-      title: "Engineering with a builder's curiosity.",
-      paragraphs: [
-        "I am a Cuban software engineer, Computer Science graduate, and developer since 2016. Backend is my specialty, but I work end-to-end whenever the product needs it.",
-        "I am drawn to domains with difficult rules, systems that must work under real constraints, and game development as a space to experiment with interaction, progression, and living worlds.",
-      ],
-      educationLabel: "Education",
-      education: "BSc in Computer Science · University of Havana · 2011—2016",
-      publicationLabel: "Research",
-      publication: "Cytogenetic tools for semi-automatic karyotype construction · 2016",
     },
     contact: {
-      eyebrow: "Contact",
-      title: "Is there a difficult product worth building?",
-      intro: "Available for products, technical collaborations, and conversations where the challenge is part of the appeal.",
-      email: "Write an email",
+      eyebrow: "Your next product",
+      title: "Do you have an application in mind?",
+      intro:
+        "Tell me about the problem, who would use it, and what stage it is in. I can help you define the MVP, build it, and prepare its next iterations.",
+      email: "Tell me your idea",
       linkedin: "Connect on LinkedIn",
       github: "Explore GitHub",
+      note: "I usually reply within 1–2 business days.",
     },
-    footer: "Designed and built by Ricardo Fundora.",
+    footer: "Digital products designed and built with intention.",
   },
 };

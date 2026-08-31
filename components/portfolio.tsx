@@ -6,24 +6,25 @@ import {
   ArrowDownRight,
   ArrowUpRight,
   BarChart3,
-  Boxes,
+  Bot,
+  CheckCircle2,
   ChevronRight,
   Code2,
   Database,
-  Gamepad2,
   Github,
-  GraduationCap,
   Languages,
-  Layers3,
   Linkedin,
   Mail,
   Menu,
   Moon,
   PackageCheck,
-  ServerCog,
+  PanelsTopLeft,
+  Scale,
   ShieldCheck,
   ShoppingCart,
+  Sparkles,
   Sun,
+  Users,
   WifiOff,
   X,
 } from "lucide-react";
@@ -35,12 +36,6 @@ import {
   type ProjectContent,
   type ProjectId,
 } from "@/content/portfolio";
-
-const projectIcons: Record<ProjectId, string> = {
-  kontado: "/projects/kontado-icon.png",
-  "nerd-vault": "/projects/nerd-vault-icon.png",
-  numb3rs: "/projects/numb3rs-icon.png",
-};
 
 function ArrowLink({
   href,
@@ -65,33 +60,79 @@ function ArrowLink({
   );
 }
 
-function ProductMap({ projects, label }: { projects: ProjectContent[]; label: string }) {
+function ProductShowcase({ label, caption }: { label: string; caption: string }) {
   return (
-    <div className="product-map" aria-label={label}>
-      <svg className="map-lines" viewBox="0 0 760 470" aria-hidden="true">
-        <path d="M86 248 C 195 248, 202 90, 338 90" />
-        <path d="M86 248 C 215 248, 252 234, 402 234" />
-        <path d="M86 248 C 202 248, 220 382, 350 382" />
-        <path d="M476 90 C 592 90, 570 233, 680 233" />
-        <path d="M540 234 C 610 234, 604 233, 680 233" />
-        <path d="M488 382 C 590 382, 596 233, 680 233" />
-      </svg>
-      <div className="map-core">
-        <span>RF</span>
-        <small>system / product</small>
+    <div className="hero-showcase" aria-label={label}>
+      <div className="portrait-card">
+        <Image
+          src="/ricardo-fundora.webp"
+          alt="Ricardo Fundora"
+          width={1122}
+          height={1402}
+          priority
+          sizes="(max-width: 900px) 72vw, 420px"
+        />
+        <div className="portrait-caption">
+          <span>Ricardo Fundora</span>
+          <small>{caption}</small>
+        </div>
       </div>
-      {projects.map((project) => (
-        <a className={`map-node map-node-${project.id}`} href={`#${project.id}`} key={project.id}>
-          <Image src={projectIcons[project.id]} alt="" width={42} height={42} />
-          <span>
-            <strong>{project.name}</strong>
-            <small>{project.discipline.split(" / ")[0]}</small>
-          </span>
-        </a>
-      ))}
-      <div className="map-output">
-        <span>VALUE</span>
-        <small>useful / clear / resilient</small>
+      <a className="showcase-product showcase-modavyr" href="#modavyr">
+        <span className="showcase-icon"><PanelsTopLeft aria-hidden="true" /></span>
+        <span><strong>MODAVYR</strong><small>SaaS · Telegram</small></span>
+      </a>
+      <a className="showcase-product showcase-kontado" href="#kontado">
+        <Image src="/projects/kontado-icon.png" alt="" width={36} height={36} />
+        <span><strong>Kontado</strong><small>Operations · Offline</small></span>
+      </a>
+      <a className="showcase-product showcase-nerd" href="#nerd-vault">
+        <Image src="/projects/nerd-vault-icon.png" alt="" width={36} height={36} />
+        <span><strong>Nerd Vault</strong><small>Marketplace</small></span>
+      </a>
+      <a className="showcase-product showcase-numb3rs" href="#numb3rs">
+        <Image src="/projects/numb3rs-icon.png" alt="" width={36} height={36} />
+        <span><strong>Numb3rs</strong><small>Data · Algorithms</small></span>
+      </a>
+    </div>
+  );
+}
+
+function ModavyrVisual() {
+  return (
+    <div className="modavyr-window" aria-label="Vista conceptual del panel modular de MODAVYR">
+      <div className="modavyr-topbar">
+        <div className="modavyr-brand"><span>M</span><strong>MODAVYR</strong></div>
+        <div className="modavyr-live"><i aria-hidden="true" />Platform online</div>
+      </div>
+      <div className="modavyr-shell">
+        <aside className="modavyr-rail" aria-hidden="true">
+          <PanelsTopLeft /><Bot /><Users /><BarChart3 />
+        </aside>
+        <div className="modavyr-main">
+          <div className="modavyr-heading">
+            <span><small>WORKSPACE</small>Applications</span>
+            <b>+ New app</b>
+          </div>
+          <div className="vertical-grid">
+            {[
+              ["Commerce", "6 modules", "#7c5cff"],
+              ["Membership", "4 modules", "#19a974"],
+              ["Loyalty", "4 modules", "#f0a43c"],
+              ["RPG", "8 systems", "#e95d78"],
+            ].map(([name, modules, color]) => (
+              <div className="vertical-card" key={name}>
+                <i style={{ background: color }} aria-hidden="true" />
+                <strong>{name}</strong><small>{modules}</small>
+                <span>Active</span>
+              </div>
+            ))}
+          </div>
+          <div className="platform-flow" aria-hidden="true">
+            <span><Bot />Telegram Bot</span><b>+</b><span><PanelsTopLeft />Mini App</span>
+            <i />
+            <strong>APP CORE</strong>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -211,9 +252,36 @@ function Numb3rsVisual() {
 }
 
 function ProjectVisual({ id }: { id: ProjectId }) {
+  if (id === "modavyr") return <ModavyrVisual />;
   if (id === "kontado") return <KontadoVisual />;
   if (id === "nerd-vault") return <NerdVaultVisual />;
   return <Numb3rsVisual />;
+}
+
+function BuildingVisual({ index }: { index: number }) {
+  if (index === 0) {
+    return (
+      <div className="community-preview" aria-hidden="true">
+        <div className="community-head"><Users /><span>Proyecto comunitario</span><small>EN VOTACIÓN</small></div>
+        <div className="community-project">
+          <span>Reparación del área común</span>
+          <strong>$8,420 <small>de $10,000</small></strong>
+          <i><b /></i>
+        </div>
+        <div className="community-flow">
+          <span><CheckCircle2 />Aprobación</span><span><Scale />Propuestas</span><span><ShieldCheck />Contrato</span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="quiz-preview" aria-hidden="true">
+      <div className="quiz-score"><Sparkles /><span>Racha actual</span><strong>12 días</strong></div>
+      <div className="quiz-question"><small>PREGUNTA 04 / 10</small><strong>¿Qué planeta tiene más lunas?</strong></div>
+      <div className="quiz-options"><span>Júpiter</span><span className="is-selected">Saturno</span></div>
+    </div>
+  );
 }
 
 function CaseDialog({
@@ -332,11 +400,14 @@ export function Portfolio() {
   };
 
   const navigation = [
-    [content.nav.work, "work"],
-    [content.nav.lab, "lab"],
-    [content.nav.experience, "experience"],
-    [content.nav.about, "about"],
+    [content.nav.projects, "work"],
+    [content.nav.solutions, "solutions"],
+    [content.nav.process, "process"],
   ];
+
+  const contactHref = `${contactLinks.email}?subject=${encodeURIComponent(
+    locale === "es" ? "Tengo una idea para una aplicación" : "I have an application idea",
+  )}`;
 
   return (
     <>
@@ -393,24 +464,25 @@ export function Portfolio() {
 
       <main id="main">
         <section className="hero" id="top">
-          <ProductMap projects={content.projects} label={content.hero.canvasLabel} />
-          <div className="hero-content wrap">
-            <p className="eyebrow">{content.hero.eyebrow}</p>
-            <h1>{content.hero.name}</h1>
-            <p className="hero-role">{content.hero.role}</p>
-            <p className="hero-intro">{content.hero.intro}</p>
-            <div className="hero-actions">
-              <ArrowLink href="#work" className="button-primary">{content.hero.workCta}</ArrowLink>
-              <ArrowLink href="#contact">{content.hero.contactCta}</ArrowLink>
+          <div className="hero-layout wrap">
+            <div className="hero-content">
+              <p className="eyebrow">{content.hero.eyebrow}</p>
+              <h1>{content.hero.headline}</h1>
+              <p className="hero-intro">{content.hero.intro}</p>
+              <div className="hero-actions">
+                <ArrowLink href="#work" className="button-primary">{content.hero.workCta}</ArrowLink>
+                <ArrowLink href="#contact">{content.hero.contactCta}</ArrowLink>
+              </div>
+              <div className="availability"><i aria-hidden="true" />{content.hero.status}</div>
             </div>
-            <div className="availability"><i aria-hidden="true" />{content.hero.status}</div>
+            <ProductShowcase label={content.hero.showcaseLabel} caption={content.hero.showcaseCaption} />
           </div>
           <a className="hero-scroll" href="#signals" aria-label={content.hero.workCta}>
             <ArrowDown aria-hidden="true" />
           </a>
         </section>
 
-        <section className="signals" id="signals" aria-label="Profile overview">
+        <section className="signals" id="signals" aria-label="Product capabilities">
           <div className="wrap signal-grid">
             {content.signals.map((signal) => (
               <div className="signal" key={signal.label}>
@@ -461,87 +533,78 @@ export function Portfolio() {
           ))}
         </section>
 
-        <section className="lab-section" id="lab">
+        <section className="solutions-section" id="solutions">
           <div className="wrap">
-            <div className="lab-heading">
-              <p className="eyebrow">{content.lab.eyebrow}</p>
-              <h2>{content.lab.title}</h2>
-              <p>{content.lab.intro}</p>
+            <div className="solutions-heading">
+              <p className="eyebrow">{content.solutions.eyebrow}</p>
+              <div>
+                <h2>{content.solutions.title}</h2>
+                <p>{content.solutions.intro}</p>
+              </div>
             </div>
-            <div className="lab-grid">
-              {content.lab.items.map((item, index) => (
-                <article className="lab-card" key={item.name}>
-                  <div className="lab-card-head">
-                    {index === 0 ? <Gamepad2 aria-hidden="true" /> : <GraduationCap aria-hidden="true" />}
-                    <span>{item.stage}</span>
-                  </div>
-                  <h3>{item.name}</h3>
+            <div className="solutions-grid">
+              {content.solutions.items.map((item) => (
+                <article className="solution-card" key={item.index}>
+                  <span className="solution-index">{item.index}</span>
+                  <h3>{item.title}</h3>
                   <p>{item.description}</p>
-                  <div className="lab-signal"><Code2 aria-hidden="true" /><span>{item.signal}</span></div>
-                  <ul>{item.stack.map((tech) => <li key={tech}>{tech}</li>)}</ul>
+                  <a href={`#${item.projectId}`}>
+                    <small>{content.solutions.proofLabel}</small>
+                    <strong>{item.proof}</strong>
+                    <ArrowDownRight aria-hidden="true" />
+                  </a>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="principles-section">
+        <section className="building-section" id="building">
           <div className="wrap">
-            <div className="principles-heading">
-              <p className="eyebrow">{content.principles.eyebrow}</p>
-              <h2>{content.principles.title}</h2>
+            <div className="building-heading">
+              <p className="eyebrow">{content.building.eyebrow}</p>
+              <h2>{content.building.title}</h2>
+              <p>{content.building.intro}</p>
             </div>
-            <div className="principles-grid">
-              {content.principles.items.map((item) => (
-                <article key={item.index}>
+            <div className="building-grid">
+              {content.building.items.map((item, index) => (
+                <article className={`building-card building-card-${index + 1}`} key={item.name}>
+                  <div className="building-visual"><BuildingVisual index={index} /></div>
+                  <div className="building-copy">
+                    <span className="building-stage"><i aria-hidden="true" />{item.stage}</span>
+                    <h3>{item.name}</h3>
+                    <p className="building-thesis">{item.thesis}</p>
+                    <p>{item.description}</p>
+                    <div className="building-signal"><Code2 aria-hidden="true" /><span>{item.signal}</span></div>
+                    <ul className="building-evidence">
+                      {item.evidence.map((evidence) => <li key={evidence}>{evidence}</li>)}
+                    </ul>
+                    <ul className="building-stack">{item.stack.map((tech) => <li key={tech}>{tech}</li>)}</ul>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="process-section" id="process">
+          <div className="wrap">
+            <div className="process-heading">
+              <p className="eyebrow">{content.process.eyebrow}</p>
+              <div>
+                <h2>{content.process.title}</h2>
+                <p>{content.process.intro}</p>
+              </div>
+            </div>
+            <div className="process-grid">
+              {content.process.items.map((item) => (
+                <article className="process-step" key={item.index}>
                   <span>{item.index}</span>
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
+                  <small><CheckCircle2 aria-hidden="true" />{item.outcome}</small>
                 </article>
               ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="experience-section" id="experience">
-          <div className="wrap experience-layout">
-            <div className="experience-heading">
-              <p className="eyebrow">{content.experience.eyebrow}</p>
-              <h2>{content.experience.title}</h2>
-              <p>{content.experience.intro}</p>
-            </div>
-            <div className="experience-list">
-              {content.experience.items.map((item) => (
-                <article className="experience-row" key={`${item.company}-${item.period}`}>
-                  <span className="experience-period">{item.period}</span>
-                  <div>
-                    <h3>{item.company}</h3>
-                    <p className="experience-role">{item.role}</p>
-                    {item.description ? <p className="experience-description">{item.description}</p> : null}
-                  </div>
-                  <ul>{item.stack.map((tech) => <li key={tech}>{tech}</li>)}</ul>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="about-section" id="about">
-          <div className="wrap about-layout">
-            <div className="about-mark" aria-hidden="true">
-              <div><span>RF</span><small>2016—2026</small></div>
-              <div className="about-modules">
-                <ServerCog /><Database /><Layers3 /><Boxes />
-              </div>
-            </div>
-            <div className="about-copy">
-              <p className="eyebrow">{content.about.eyebrow}</p>
-              <h2>{content.about.title}</h2>
-              {content.about.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-              <dl>
-                <div><dt>{content.about.educationLabel}</dt><dd>{content.about.education}</dd></div>
-                <div><dt>{content.about.publicationLabel}</dt><dd>{content.about.publication}</dd></div>
-              </dl>
             </div>
           </div>
         </section>
@@ -552,9 +615,10 @@ export function Portfolio() {
               <p className="eyebrow">{content.contact.eyebrow}</p>
               <h2>{content.contact.title}</h2>
               <p>{content.contact.intro}</p>
+              <span className="contact-note"><i aria-hidden="true" />{content.contact.note}</span>
             </div>
             <div className="contact-links">
-              <a href={contactLinks.email}><Mail aria-hidden="true" /><span>{content.contact.email}</span><ArrowUpRight aria-hidden="true" /></a>
+              <a className="contact-primary" href={contactHref}><Mail aria-hidden="true" /><span>{content.contact.email}</span><ArrowUpRight aria-hidden="true" /></a>
               <a href={contactLinks.linkedin} target="_blank" rel="noreferrer"><Linkedin aria-hidden="true" /><span>{content.contact.linkedin}</span><ArrowUpRight aria-hidden="true" /></a>
               <a href={contactLinks.github} target="_blank" rel="noreferrer"><Github aria-hidden="true" /><span>{content.contact.github}</span><ArrowUpRight aria-hidden="true" /></a>
             </div>
